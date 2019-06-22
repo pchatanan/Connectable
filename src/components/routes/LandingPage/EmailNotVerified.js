@@ -2,6 +2,7 @@ import React from 'react'
 import * as firebase from 'firebase'
 import { useStore } from '../../states/GlobalStore';
 import { observer } from 'mobx-react';
+import { Container } from 'simply-ui'
 
 const CountDownButton = observer(props => {
   const [count, setCount] = React.useState(props.milli)
@@ -56,7 +57,7 @@ const SendEmailButton = observer(props => {
 const EmailNotVerified = props => {
   const store = useStore()
 
-  return (<div>
+  return (<Container.FlexBox>
     <button onClick={e => {
       store.user.data.reload()
         .then(() => {
@@ -68,15 +69,6 @@ const EmailNotVerified = props => {
     }}>Refesh</button>
     <SendEmailButton />
     <button onClick={e => {
-      firebase.auth().signOut()
-        .then(() => {
-          store.error = 'logout successfully'
-        })
-        .catch(err => {
-          store.error = err.mssage
-        })
-    }}>Logout</button>
-    <button onClick={e => {
       store.user.data.delete()
         .then(() => {
           store.error = 'Account deleted.'
@@ -85,7 +77,7 @@ const EmailNotVerified = props => {
           store.error = err.message
         })
     }}>Delete account</button>
-  </div>)
+  </Container.FlexBox>)
 }
 
 export default observer(EmailNotVerified)

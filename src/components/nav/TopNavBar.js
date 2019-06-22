@@ -1,33 +1,15 @@
 import React from 'react'
-import { useStore } from '../states/GlobalStore';
-import { Link } from 'react-router-dom'
-import { routes } from '../routes';
-import * as firebase from 'firebase'
+import { Container, NavBar, Main } from 'simply-ui'
+import RightMenu from './RightMenu';
+import LeftMenu from './LeftMenu';
+import AppLogo from '../icons/AppLogo';
 
 const TopNavBar = props => {
-  const store = useStore()
-  if (store.isAuth) {
-    if (store.user.data.emailVerified) {
-      return (<div>
-        <button onClick={e => {
-          firebase.auth().signOut()
-        }}>Logout</button>
-      </div>)
-    }
-    else {
-      return (<div>
-        No Nav Bar: Your email is not verified.
-      </div>)
-    }
-
-  }
-  else {
-    return (<div>
-      <Link to={routes.LandingPage.path}><button>Home</button></Link>
-      <Link to={routes.LoginPage.path}><button>Login</button></Link>
-      <Link to={routes.RegisterPage.path}><button>Register</button></Link>
-    </div>)
-  }
+  return (<Main.NavBarContainer>
+    <NavBar.AppLogo logo={AppLogo} />
+    <LeftMenu />
+    <RightMenu />
+  </Main.NavBarContainer>)
 
 }
 

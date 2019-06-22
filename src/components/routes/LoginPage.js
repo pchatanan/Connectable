@@ -8,11 +8,13 @@ import { Widget, Container } from 'simply-ui'
 
 const LoginPage = props => {
   const store = useStore()
+  store.title = 'Login'
   const [loggingIn, setLoggingIn] = React.useState(false)
   return (<Container.FlexBox styled={`
             height: 100%;
             overflow: auto;
           `}>
+    <h1>Login</h1>
     <Container.VerticalForm
       styled={`
         height: min-content;

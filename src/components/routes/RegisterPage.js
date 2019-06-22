@@ -9,6 +9,7 @@ import { Widget, Container } from 'simply-ui'
 
 const RegisterPage = props => {
   const store = useStore()
+  store.title = 'Create New Account'
   return (<Container.FlexBox styled={`
   height: 100%;
   overflow: auto;
